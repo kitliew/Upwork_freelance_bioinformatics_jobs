@@ -6,7 +6,7 @@ import re
 import time
 
 # remember to input email for Entrez
-Entrez.email = "kit.liew@outlook.com"
+Entrez.email = "test@outlook.com"   #TODO CHANGE EMAIL!
 
 def search_term(gene, organism_list):
     """ combine gene symbol and search organism
@@ -184,7 +184,7 @@ if __name__ == "__main__":
     organism_list = get_organisms_csv(input_csv)
     # get search term list
     print("Number of Organism: " + str(len(organism_list)))
-    term_list = search_term(gene_name, organism_list)       #TODO can run partially if needed
+    term_list = search_term(gene_name, organism_list)
 
     # get id list
     # this is most time consuming part. Average 1 sec for 1 search
