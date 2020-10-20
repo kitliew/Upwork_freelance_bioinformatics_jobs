@@ -1,0 +1,39 @@
+For those who are thinking of using BLASTP/BLASTN > Taxonomy_report, unfortunately including me, it was wrong.
+
+After having a conversation with client XXX via zoom, the actual task was slightly different.
+Client mentioned that homology/homology? is not the top priority.
+The client is looking for species having the gene_name (not only those with high similarity).
+
+What the client normally do step-by-step:
+Step 1. On NCBI gene database, search for:
+        A)gene_name and look for bacteria species by scrolling through the result OR
+        B)gene_name bacteria_species_name (e.g Iles Candidatus Hodgkinia cicadicola)
+Step 2. Click on the first result, scroll to Section-"Genomic regions, transcripts, and products" and click on FASTA
+Step 3. Download FASTA sequence
+
+
+
+
+My approach:
+Use Biopython and Pandas
+Step 1. Pandas.read_csv the input.csv(containing 2000+ organism name) and get the ["Organism Name"] column.
+Step 2. Search via Bio.Entrez.esearch(db="gene", ...)
+            --> on NCBI, [ORGN] filters organism name
+            --> unfortunately i wasn't able to find solution for multiple search, have to loop over function for each organism name
+            a. Create search term function (e.g "Iles AND Candidatus Hodgkinia cicadicola[ORGN]")
+Step 3. esearch return a list of gene_Id. Use the first id in list and perform Bio.Entrez.efetch(db="gene", ...)
+Step 4. parse the output, get Annotation(contains Nucleotide_Id and Sequence_range)
+Step 5. fetch fasta sequence via Bio.Entrez.efetch(db="nucleotide", ...)
+Step 6. Create DataFrame for each category, merge DataFrame 1 by 1 by common column name
+Step 7. Write output
+DONE!
+
+
+
+Tricky/Obstacle:
+1. Some organism share the same NucleotideId (duplicated key), causes duplicate. Reference:
+https://stackoverflow.com/questions/51669232/pandas-merge-with-duplicated-key-removing-duplicated-rows-or-preventing-its-c
+
+Solution:
+1. Use df["temporary"] = df.groupby("Nucleotide_Id").cumcount(), then merged on ["Nucleotide_Id", "temporary"]
+

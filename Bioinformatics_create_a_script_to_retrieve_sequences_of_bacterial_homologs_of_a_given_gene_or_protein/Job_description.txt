@@ -1,0 +1,48 @@
+A $100 python script job.
+
+Status
+Accepted - by you on October 16, 2020
+
+Contract Title
+Bioinformatics: create a script to retrieve sequences of bacterial homologs of a given gene/protein
+
+Related Job Opening
+Bioinformatics: create a script to retrieve sequences of bacterial homologs of a given gene/protein
+
+Job Category
+Data Processing
+
+Hourly Rate
+$30.00 /hr (Max $100)
+
+Offer Date
+October 14, 2020
+
+Start Date
+October 14, 2020
+
+Weekly Limit
+5 hours per week
+
+Manual Time Allowed
+Yes
+
+Work Description
+Dear all,
+
+I am looking for a short-term collaboration with a bioinformatician who could help me to create a script that would do the following:
+
+1. for a given gene/protein – retrieve its homologs in bacterial species (based on annotated name or sequence homology) from any major database of nucleotide sequences and add these nucleotide sequences next to a corresponding organism in the input .csv file
+2. for each of the retrieved sequences, calculate their GC content and write this information next to the corresponding sequence in the .csv file.
+
+Ideally, the script should work in python 3 and run like this:
+python script_GC_calculator.py $protein_id $input.csv > $output.csv
+
+Attached is an example of the input.csv file.
+
+Please feel free to ask me any questions and negotiate. Will be glad to talk out all the details before the commitment.
+
+Best regards,
+XXX
+
+Input_file: Reduced_table_of_prokaryotes_with_known_genomes.csv
